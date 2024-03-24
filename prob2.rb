@@ -1,4 +1,9 @@
 def parse_invoices(invoice_data)
+  invoice_data.each_line do |line|
+    pattern = line.match(/(\d{4}-\d{2}-\d{2}) - (\w+) - ([\w\s]+) - (\$\d+)/)
+    date, invoice_number, client_name, amount = pattern[1..4]
+    puts "Date: #{date}, Invoice Number: #{invoice_number}, Client: #{client_name.strip}, Amount: #{amount}"
+  end
 end
 
 invoice_entries = <<-INVOICES
